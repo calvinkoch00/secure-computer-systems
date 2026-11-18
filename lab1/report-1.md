@@ -75,7 +75,7 @@ Bobby's full name looks like an SQL injection which deleted the tables from the 
 
 ## Task 2: XSS/CSRF
 
-Attack: 
+Attack:
 
 ```html
 <iframe srcdoc="
@@ -188,6 +188,8 @@ Imagine the same e-commerce site has a feature to change your account email addr
 * **Test 2 (Permissions Removed):** [Printouts + `ls -l` before and after]
 * **Test 3 (File Deleted):** [Printouts + `ls -l` before and after]
 * **Analysis of Results:** [Explain the race condition and how the OS access controls evaluated the file descriptors at check time vs. use time.]
+
+![1794999340771](image/report-1/1794999340771.png)![1794999354815](image/report-1/1794999354815.png)![1794999373205](image/report-1/1794999373205.png)
 
 ### 4.2 Cross-OS Replication (Exercises 5–8)
 
