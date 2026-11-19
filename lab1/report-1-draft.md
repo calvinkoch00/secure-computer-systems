@@ -1,9 +1,8 @@
-
 # Lab 1: Secure Computing
 
 **Author:** Calvin Koch
 
-**Date:** [Insert Date]
+**Date:** 19.11.2026
 
 ---
 
@@ -77,7 +76,6 @@
         document.write('<p>Stolen Email: ' + email + '</p>');
     </script>
 "></iframe>
-
 ```
 
 * **Mechanism of Action:** The application fails to properly sanitize or encode HTML entities in user input before rendering it in the DOM. When the victim loads the page, the browser interprets the `srcdoc` attribute as legitimate HTML and executes the embedded JavaScript. This script bypasses standard visual detection, queries the browser's `localStorage` API, and extracts the user's session data. In a weaponized scenario, this script would utilize the `fetch()` API to silently exfiltrate the `localStorage` data to an attacker-controlled server.
@@ -126,7 +124,6 @@ def generate_password(num_words):
 if __name__ == "__main__":
     num = int(sys.argv[1]) if len(sys.argv) > 1 else 4
     generate_password(num)
-
 ```
 
 * **Example Output:**
@@ -136,7 +133,6 @@ redemise underking combmaker embark
 4 RANDOM words from word list of 234936 words
 Entropy: 71.37 bits
 You need 11.99 RANDOM characters in [a-zA-Z0-9] to get the same entropy.
-
 ```
 
 * **Explanation:** The script calculates the theoretical entropy based on Shannon's mathematical theory of communication [@shannon1948]. Entropy ($E$) is derived by calculating the base-2 logarithm of the total possible combinations: $E = L \times \log_2(N)$, where $L$ is the number of words chosen and $N$ is the total size of the filtered dictionary.
@@ -223,5 +219,4 @@ Save the following text as `refs.bib` in the exact same folder as your markdown 
   publisher={IEEE},
   howpublished={\url{https://web.mit.edu/Saltzer/www/publications/protection/Basic.html}}
 }
-
 ```

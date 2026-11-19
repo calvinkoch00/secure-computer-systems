@@ -12,7 +12,7 @@ def generate_password(num_words):
     
     wordlist_size = len(words)
     
-    # Use the secrets module for cryptographically secure random selection
+    # Use the secrets module for random selection
     password_words = [secrets.choice(words) for _ in range(num_words)]
     password = " ".join(password_words)
     
@@ -21,12 +21,12 @@ def generate_password(num_words):
     entropy = num_words * math.log2(wordlist_size)
     
     # Calculate equivalent random characters
-    # [a-zA-Z0-9] = 26 + 26 + 10 = 62 possible characters
+    # [a-z, A-Z, 0-9] = 26 + 26 + 10 = 62 possible characters
     # Required Chars = Total Entropy / log2(62)
     char_alphabet_size = 62
     equiv_chars = entropy / math.log2(char_alphabet_size)
     
-    # Output matching the lab's requested format
+    # Output the results
     print(f"\n{password}")
     print(f"{num_words} RANDOM words from word list of {wordlist_size} words")
     print(f"Entropy: {entropy:.2f} bits")

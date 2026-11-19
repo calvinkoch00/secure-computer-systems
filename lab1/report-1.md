@@ -1,7 +1,7 @@
 # Lab 1: Secure Computing
 
 **Author:** Calvin Koch
-**Date:** YYYY-MM-DD
+**Date:** 19.11.2026
 
 ---
 
@@ -164,6 +164,15 @@ Imagine the same e-commerce site has a feature to change your account email addr
 * **Encryption vs. Signing Order:** [Explain why public keys must be exchanged via a signed email before encrypted communication can commence.]
 * **Mail Client vs. Webmail:** [Explain key management, local private key storage, and why browser-based webmail fundamentally compromises end-to-end encryption.]
 
+![1795078243019](image/report-1/1795078243019.png)![1795078259759](image/report-1/1795078259759.png)![1795078368882](image/report-1/1795078368882.png)
+
+![1795079478224](image/report-1/1795079478224.png)
+
+![1795080027151](image/report-1/1795080027151.png)![1795080022676](image/report-1/1795080022676.png)
+![1795080116539](image/report-1/1795080116539.png)![1795080224378](image/report-1/1795080224378.png)
+![1795080241325](image/report-1/1795080241325.png)![1795080296542](image/report-1/1795080296542.png)![1795080394180](image/report-1/1795080394180.png)
+![1795080425467](image/report-1/1795080425467.png)![1795080942595](image/report-1/1795080942595.png)
+
 ### 3.4 Password Policy Analysis [Higher Grades] (Exercises 19–24)
 
 * **Information Theory Minimum Length:** [Calculation for minimum length of allowed passwords to hit 27 bits of entropy.]
@@ -179,8 +188,130 @@ Imagine the same e-commerce site has a feature to change your account email addr
 
 * **Source Code:**
 
-```python
-# Insert your <50 line Python script here
+```Shell
+# Ins#!/bin/bash
+
+# Ensure we use unbuffered python output (-u) so prints appear immediately before the pause
+if python3 --version &>/dev/null; then
+    PY_CMD="python3 -u"
+else
+    PY_CMD="python -u"
+fi
+
+TARGET_DIR="tocttou"
+TARGET_FILE="$TARGET_DIR/temp_file.txt"
+PY_SCRIPT="tocttou_app.py"
+
+# Helper function to print file content
+print_file_content() {
+    echo "[After] Reading file content:"
+    echo "---"
+    if [ -f "$TARGET_FILE" ]; then
+        cat "$TARGET_FILE"
+    else
+        echo "File does not exist or cannot be read."
+    fi
+    echo "---"
+}
+
+cat << 'EOF' > "$PY_SCRIPT"
+import sys
+
+filepath = sys.argv[1]
+
+# ANSI color codes for better terminal output
+G = "\033[92m"   # Light Green
+RED = "\033[91m" # Light Red
+R = "\033[0m"    # Reset back to default
+
+try:
+    print(f"{G}[*] Python: Opening '{filepath}' for writing...{R}")
+    fd = open(filepath, "w")
+  
+    print(f"{G}[!] Python: Paused. (Bash is performing TOCTTOU modifications...) Press Enter...{R}")
+    input()
+  
+    print(f"{G}[*] Python: Writing to file descriptor...{R}")
+    fd.write("This Data was written during the TOCTTOU test.\n")
+    fd.close()
+    print(f"{G}[+] Python: File closed successfully.\n{R}")
+except Exception as e:
+    print(f"{RED}[-] Python Error: {e}\n{R}")
+EOF
+
+mkdir -p "$TARGET_DIR"
+
+echo "========================================================"
+echo "Test 1: Normal execution (Write permissions allowed) "
+echo "========================================================"
+touch "$TARGET_FILE"
+chmod u+w "$TARGET_FILE"
+echo "[Before] Permissions:"
+ls -l "$TARGET_FILE"
+(
+    sleep 1
+    # >&2 redirects Bash prints to the terminal so they don't get sent to Python's input
+    echo ">>> [Bash Action] No modifications made during pause." >&2
+    echo "Sending enter key..." >&2
+    echo ""
+) | $PY_CMD "$PY_SCRIPT" "$TARGET_FILE"
+print_file_content
+
+
+echo -e "\n========================================================"
+echo " Test 2: Revoke write permissions during TOCTTOU pause "
+echo "========================================================"
+# Recreate/clear file for a fresh test and ensure write permissions are granted
+echo -n > "$TARGET_FILE"
+chmod u+w "$TARGET_FILE"
+echo "[Before] Permissions:"
+ls -l "$TARGET_FILE"
+(
+    sleep 1
+    echo ">>> [Bash Action] Revoking write permissions (chmod u-w)..." >&2
+    chmod u-w "$TARGET_FILE"
+    ls -l "$TARGET_FILE" >&2
+    echo "Sending enter key..." >&2
+    echo ""
+) | $PY_CMD "$PY_SCRIPT" "$TARGET_FILE"
+print_file_content
+
+
+echo -e "\n========================================================"
+echo " Test 3a: Run without write permissions from the start "
+echo "========================================================"
+echo "[Before] Permissions (Should still be revoked from Test 2):"
+ls -l "$TARGET_FILE"
+(
+    sleep 1
+    echo ">>> [Bash Action] Sending enter key..." >&2
+    echo "" 
+) | $PY_CMD "$PY_SCRIPT" "$TARGET_FILE"
+print_file_content
+
+
+echo -e "\n========================================================"
+echo " Test 3b: Delete the file during TOCTTOU pause         "
+echo "========================================================"
+# Give write permissions back before starting
+chmod u+w "$TARGET_FILE"
+echo "[Before] Permissions:"
+ls -l "$TARGET_FILE"
+(
+    sleep 1
+    echo ">>> [Bash Action] Deleting the file (rm)..." >&2
+    rm "$TARGET_FILE" 2>/dev/null || echo ">>> [Bash Action] Failed to delete file (OS Locked File)" >&2
+    ls -l "$TARGET_FILE" 2>&1 >&2
+    echo "Sending enter key..." >&2
+    echo ""
+) | $PY_CMD "$PY_SCRIPT" "$TARGET_FILE"
+print_file_content
+
+
+# Cleanup
+echo -e "\n[*] Cleaning up environment..."
+rm -f "$PY_SCRIPT"
+rm -rf "$TARGET_DIR"ert your <50 line Python script here
 ```
 
 * **Test Results & Permissions:**
@@ -189,7 +320,18 @@ Imagine the same e-commerce site has a feature to change your account email addr
 * **Test 3 (File Deleted):** [Printouts + `ls -l` before and after]
 * **Analysis of Results:** [Explain the race condition and how the OS access controls evaluated the file descriptors at check time vs. use time.]
 
+MacOS:
+
 ![1794999340771](image/report-1/1794999340771.png)![1794999354815](image/report-1/1794999354815.png)![1794999373205](image/report-1/1794999373205.png)
+
+Windows 11:
+![1795076386232](image/report-1/1795076386232.png)
+
+![1795076394429](image/report-1/1795076394429.png)
+
+![1795076401870](image/report-1/1795076401870.png)
+
+![1795076409222](image/report-1/1795076409222.png)
 
 ### 4.2 Cross-OS Replication (Exercises 5–8)
 

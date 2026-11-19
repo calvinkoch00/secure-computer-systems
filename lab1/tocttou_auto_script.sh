@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure we use unbuffered python output (-u) so prints appear immediately before the pause
-if command -v python3 &>/dev/null; then
+if python3 --version &>/dev/null; then
     PY_CMD="python3 -u"
 else
     PY_CMD="python -u"
