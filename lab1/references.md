@@ -62,3 +62,37 @@ mediation and least privilege.
 The assignment itself is the local source for the required exercises,
 examples, and URLs. The copy used for this report is stored in the session
 attachment and is not repeated here because it is not a public URL.
+
+## [7] NIST SP 800-57 Part 1 Rev. 5
+
+URL: <https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final>
+
+> “This Recommendation provides cryptographic key-management guidance.”
+
+This source is used for the explanation that cryptographic security depends on
+key management and the protection of cryptographic keys. It does not claim
+that breaking a key takes literally forever; “computationally infeasible” is
+the more accurate wording.
+
+## [8] Microsoft: CreateFileW function
+
+URL: <https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew>
+
+> “The function returns a handle that can be used to access the file or
+> device for various types of I/O depending on the file or device and the flags
+> and attributes specified.”
+
+The documentation describes the `dwShareMode` parameter and the sharing
+permissions selected when a Windows file handle is created.
+
+## [9] The Open Group: `unlink`, `unlinkat`
+
+URL: <https://pubs.opengroup.org/onlinepubs/9699919799/functions/unlink.html>
+
+> “If one or more processes have the file open when the last link is removed,
+> the link shall be removed before `unlink()` returns, but the removal of the
+> file contents shall be postponed until all references to the file are
+> closed.”
+
+This is the source for the Unix-like behaviour described in the TOCTTOU
+comparison.

