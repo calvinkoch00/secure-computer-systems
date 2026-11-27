@@ -5,10 +5,10 @@ link-citations: true
 ---
 # Lab 1: Secure Computer Systems
 
-**Date:** 19.11.2026  
-**Author:** Calvin Koch  
-**Course:** Secure Computer Systems I (1DT072, 11209, HT2026)  
-**Lab title:** Lab 1 - Secure Computer Systems  
+**Date:** 19.11.2026
+**Author:** Calvin Koch
+**Course:** Secure Computer Systems I (1DT072, 11209, HT2026)
+**Lab title:** Lab 1 - Secure Computer Systems
 **Collaboration:** I worked independently.
 
 Screenshots in the report itself have been avoided where possible. The
